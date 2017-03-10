@@ -1,0 +1,3 @@
+#!/bin/sh
+
+iptables -t nat -A POSTROUTING -s $PPPOW_NETMASK -o $PPPOW_INTERFACE -j MASQUERADE

@@ -1,0 +1,21 @@
+# description: An xinetd pppd wrapper
+
+service pppow
+{
+        server          = /usr/sbin/pppd
+        server_args     = passive nodetach notty mtu 576 logfile /var/log/pppd $PPPOW_EXTERNAL_IP:0.0.0.0
+        disable         = no
+        flags           = REUSE
+        id              = pppow
+        socket_type     = stream
+        wait            = no
+        protocol        = tcp
+        user            = ppp
+        group           = dip
+        port            = 8089
+        type            = UNLISTED
+
+        # uncomment this if you only want to expose the WebSocket port, not the direct PPPD over TCP port
+        #bind            = 127.0.0.1 
+}
+
